@@ -1,5 +1,19 @@
 # ArgoCD Configuration Guide for Application Deployment
 
+To install argocd
+
+Run the command below:
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+To fetch the password run the command below:
+
+kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d
+
+To disable TLS run the command below:
+
+kubectl patch cm argocd-cmd-params-cm -n argocd --type merge -p '{"data":{"server.insecure":"true"}}'
+
 ## Overview
 This document provides step-by-step instructions on how to configure applications in ArgoCD. It uses `example-app` as a reference. Follow these steps to configure and deploy applications in ArgoCD in case of updates or new deployments.
 
