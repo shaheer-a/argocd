@@ -14,6 +14,12 @@ To disable TLS run the command below:
 
 kubectl patch cm argocd-cmd-params-cm -n argocd --type merge -p '{"data":{"server.insecure":"true"}}'
 
+To create a secret for slack alert run the command below:
+
+ kubectl patch secret argocd-notifications-secret -n argocd \
+ --type merge --patch '{"stringData":{"slack-token": "xoxb-xxxx"}}'
+
+
 ## Overview
 This document provides step-by-step instructions on how to configure applications in ArgoCD. It uses `example-app` as a reference. Follow these steps to configure and deploy applications in ArgoCD in case of updates or new deployments.
 
